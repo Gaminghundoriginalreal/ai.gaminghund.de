@@ -1,18 +1,31 @@
-// script.js
-async function loadModel() {
-    const tokenizer = await window.tf.loadTokenizer('distilbert-base-uncased');
-    const model = await window.tf.loadModel('https://huggingface.co/distilbert-base-uncased/resolve/main/tf_model.h5');
-    return { tokenizer, model };
-}
-
 async function sendMessage() {
     const prompt = document.getElementById('prompt').value;
-    const responseDiv = document.getElementById('response');
-    
-    const { tokenizer, model } = await loadModel();
-    const inputs = tokenizer.encode(prompt, return_tensors="pt");
-    const outputs = model.generate(inputs, max_length=150, num_return_sequences=1);
-    const response = tokenizer.decode(outputs[0], skip_special_tokens=True);
+    const chatBox = document.getElementById('chat-box');
 
-    responseDiv.innerHTML = `<p>${response}</p>`;
+    if (!prompt.trim()) return;
+
+    // Zeige die Benutzer-Nachricht an
+    const userMessageDiv = document.createElement('div');
+    userMessageDiv.className = 'message user-message';
+    userMessageDiv.textContent = prompt;
+    chatBox.appendChild(userMessageDiv);
+
+    // Simulierte Bot-Antwort
+    const botResponse = `Antwort zu: ${prompt}`;
+
+    // Zeige die Bot-Nachricht an
+    const botMessageDiv = document.createElement('div');
+    botMessageDiv.className = 'message bot-message';
+    botMessageDiv.textContent = botResponse;
+    chatBox.appendChild(botMessageDiv);
+
+    // Leere das Textfeld
+    document.getElementById('prompt').value = '';
+    
+    // Scroll zum neuesten Beitrag
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
 }
