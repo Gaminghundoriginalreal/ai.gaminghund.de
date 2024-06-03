@@ -3,6 +3,11 @@ body {
     text-align: center;
     background-color: #f4f4f9;
     color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1 {
+    margin-top: 20px;
 }
 
 .chat-container {
@@ -31,11 +36,56 @@ button:hover {
     background-color: #0056b3;
 }
 
-.response-container {
+.chat-box {
     margin: 20px auto;
     width: 60%;
     padding: 10px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.user-message {
+    background-color: #d1e7dd;
+}
+
+.bot-message {
+    background-color: #f8d7da;
+}
+
+.theme-toggle {
+    margin: 10px 0;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: #e1e1e1;
+}
+
+.dark-mode .chat-box {
+    background-color: #1e1e1e;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .user-message {
+    background-color: #2e3b4e;
+}
+
+.dark-mode .bot-message {
+    background-color: #593c3c;
+}
+
+.dark-mode button {
+    background-color: #0056b3;
+}
+
+.dark-mode button:hover {
+    background-color: #003f7f;
 }
